@@ -3,7 +3,6 @@
 # 你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。
 
 # 示例:
-
 # 给定 nums = [2, 7, 11, 15], target = 9
 
 # 因为 nums[0] + nums[1] = 2 + 7 = 9
@@ -18,9 +17,12 @@ class Solution:
         hashmap = {}
         for i, val in enumerate(nums):
             complement = target - val
+            print('complement:', complement)
+            print('hashmap:', hashmap)
             if complement in hashmap:
                 return [hashmap[complement], i]
             hashmap[val] = i
+            print('hashmap x:', hashmap)
 
     def _init_(self):
         print(self.twoSum([2, 7, 11, 15], 9))
