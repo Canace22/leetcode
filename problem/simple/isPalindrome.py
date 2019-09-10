@@ -32,10 +32,12 @@ class Solution:
             print('x:', x)
             print('reverse', reverse)
         # 若翻转的后半部分数字 reverse 等于前半部分数字，返回 true，否则返回 false，利用 int 向上取整的特性，当 x 为奇数时，去掉最后一位
-        return x == reverse or x == int(reverse/10)
+        return x == reverse or x == int(reverse / 10)
+
+    def __init__(self, arr):
+        for item in arr:
+            print(self.isPalindrome(item))
 
 
-x = Solution()
 arr = [121, -121, 10]
-for item in arr:
-    print(x.isPalindrome(item))
+Solution(arr)

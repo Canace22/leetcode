@@ -5,10 +5,11 @@
 1. 找出数组中相加等于目标值的两个元素下标
 
 ```python
+# 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。
+
 # 你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。
 
 # 示例:
-
 # 给定 nums = [2, 7, 11, 15], target = 9
 
 # 因为 nums[0] + nums[1] = 2 + 7 = 9
@@ -17,22 +18,24 @@
 # 来源：力扣（LeetCode）
 # 链接：https://leetcode-cn.com/problems/two-sum
 
-
 class Solution:
     def twoSum(self, nums, target):
         hashmap = {}
         for i, val in enumerate(nums):
             complement = target - val
+            print('complement:', complement)
+            print('hashmap:', hashmap)
             if complement in hashmap:
                 return [hashmap[complement], i]
             hashmap[val] = i
-    def _init_(self):
-       return self.twoSum([2, 7, 11, 15], 22)
+            print('hashmap x:', hashmap)
 
+    def __init__(self, nums, target):
+        print(self.twoSum(nums, target))
 
-
-x = Solution()
-print(x))
+nums = [2, 7, 11, 15]
+target = 9
+Solution(nums, target)
 ```
 
 遍历列表，目标值与当前元素相减得到符合条件的元素，查找字典，如果存在符合条件的键，返回值，否则把该元素作为键，索引作为值存到字典里，重复以上步骤，直到找到对应的两个元素，返回索引列表
@@ -45,7 +48,6 @@ print(x))
 # 示例 1:
 # 输入: 123
 # 输出: 321
-
 #  示例 2:
 # 输入: -123
 # 输出: -321
@@ -53,8 +55,8 @@ print(x))
 # 示例 3:
 # 输入: 120
 # 输出: 21
-# 注意:
 
+# 注意:
 # 假设我们的环境只能存储得下 32 位的有符号整数，则其数值范围为 [−231, 231 − 1]。请根据这个假设，如果反转后整数溢出那么就返回 0。
 
 # 来源：力扣（LeetCode）
@@ -63,7 +65,8 @@ print(x))
 class Solution:
     def reverse(self, x):
         INT_MAX = 2**31
-        INT_MIN = -2**31
+        INT_MIN = -2 ** 31
+        print(INT_MAX, INT_MIN)
         cur = 0
         while x != 0:
             if (x < 0):
@@ -78,12 +81,12 @@ class Solution:
             x = int(x/10)
         return cur
 
-    def _init_(self):
-        print(res.reverse(-123))
-        return self.reverse(-123)
+    def __init__(self, arr):
+        for item in arr:
+            print(self.reverse(item))
 
-res = Solution()
-res._init_()
+arr = [123, -123, 120]
+Solution(arr)
 ```
 
 从个位开始从高到低重新排位，最后得到的就是当前整数倒过来的数字
@@ -121,7 +124,6 @@ res._init_()
 # 来源：力扣（LeetCode）
 # 链接：https: // leetcode-cn.com/problems/valid-parentheses
 
-
 class Solution:
     def isValid(self, s):
         # 简洁但是效率低
@@ -141,12 +143,12 @@ class Solution:
                 stack.append(char)  # 开括号存储到栈里
         return not stack
 
-    def _init_(self):
-        return self.isValid("([)]")
+    def __init__(self, arr):
+        for item in arr:
+            print(self.isValid(item))
 
-
-res = Solution()
-print(res._init_())
+arr = ['()', '()[]{}', "(]", "([)]", "{[]}", '']
+Solution(arr)
 ```
 
 4. 回文数判断
@@ -171,7 +173,6 @@ print(res._init_())
 # 来源：力扣（LeetCode）
 # 链接：https: // leetcode-cn.com/problems/palindrome-number
 
-
 class Solution:
     def isPalindrome(self, x: int) -> bool:
         # x 若是 0 或者负数，返回 false
@@ -186,13 +187,14 @@ class Solution:
             print('x:', x)
             print('reverse', reverse)
         # 若翻转的后半部分数字 reverse 等于前半部分数字，返回 true，否则返回 false，利用 int 向上取整的特性，当 x 为奇数时，去掉最后一位
-        return x == reverse or x == int(reverse/10)
+        return x == reverse or x == int(reverse / 10)
 
+    def __init__(self, arr):
+        for item in arr:
+            print(self.isPalindrome(item))
 
-x = Solution()
 arr = [121, -121, 10]
-for item in arr:
-    print(x.isPalindrome(item))
+Solution(arr)
 ```
 
 5. 获取最长公共前缀
@@ -217,13 +219,12 @@ for item in arr:
 # 来源：力扣（LeetCode）
 # 链接：https: // leetcode-cn.com/problems/longest-common-prefix
 
-
 class Solution:
     def longestCommonPrefix(self, strs) -> str:
         if not strs:
             return ''
         r = []
-        for item in zip(*strs):  # 将 str 转换为二位矩阵式，遍历每个单元
+        for item in zip(*strs):  # 将 str 转换为二维矩阵式，遍历每个单元
             # 若二维矩阵式每一项用 set 方式去重，三个都为重复的话，长度将为 1，此时 str 中每个元素该位置的值相同，将 true 添加到结果集合中
             r.append(len(set(item)) == 1)
         # 用于解决全部字符串相等时的情况，在后面加个 0，可以截取整个数组
@@ -232,13 +233,13 @@ class Solution:
         res = strs[0][:r.index(0)]
         return res
 
+    def __init__(self, arr):
+        for item in ex:
+            print(self.longestCommonPrefix(item))
 
-res = Solution()
 ex = [["dog", "racecar", "car"], ["flower", "flow", "flight"], []]
-for i in ex:
-    print(res.longestCommonPrefix(i))
+Solution(ex)
 ```
-
 这道题用到了 python 的一个独有的数据处理能力，把数组转置为矩阵，通过判断矩阵每行的重复数为 1，判别数组中的每个元素的公共前缀。有点曲径通幽处的感觉，很妙。题解是我看了一个老哥的解答之后优化的，那老哥直接用了生成器，两行搞定了，可能理解上需要花点时间，我就按照自己的理解写成了一般式了。
 
 

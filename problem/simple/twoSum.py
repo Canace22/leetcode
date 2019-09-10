@@ -24,10 +24,10 @@ class Solution:
             hashmap[val] = i
             print('hashmap x:', hashmap)
 
-    def _init_(self):
-        print(self.twoSum([2, 7, 11, 15], 9))
-        return self.twoSum([2, 7, 11, 15], 9)
+    def __init__(self, nums, target):
+        print(self.twoSum(nums, target))
 
 
-x = Solution()
-x._init_()
+nums = [2, 7, 11, 15]
+target = 9
+Solution(nums, target)

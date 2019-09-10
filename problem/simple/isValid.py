@@ -48,9 +48,10 @@ class Solution:
                 stack.append(char)  # 开括号存储到栈里
         return not stack
 
-    def _init_(self):
-        return self.isValid("([)]")
+    def __init__(self, arr):
+        for item in arr:
+            print(self.isValid(item))
 
 
-res = Solution()
-print(res._init_())
+arr = ['()', '()[]{}', "(]", "([)]", "{[]}", '']
+Solution(arr)

@@ -37,10 +37,10 @@ class Solution:
             x = int(x/10)
         return cur
 
-    def _init_(self):
-        print(res.reverse(-123))
-        return self.reverse(-123)
+    def __init__(self, arr):
+        for item in arr:
+            print(self.reverse(item))
 
 
-res = Solution()
-res._init_()
+arr = [123, -123, 120]
+Solution(arr)

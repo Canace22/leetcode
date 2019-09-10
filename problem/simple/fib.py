@@ -39,6 +39,8 @@ class SolutionUp:
             Memo[n] = self.fib(n - 1, Memo) + self.fib(n - 2, Memo)
         return Memo[n]
 
+    def __init__(self, x):
+        self.Fibonacci(x)
 
-xUp = SolutionUp()
-print(xUp.Fibonacci(8))
+
+print(SolutionUp(8))
