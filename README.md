@@ -242,4 +242,50 @@ Solution(ex)
 ```
 这道题用到了 python 的一个独有的数据处理能力，把数组转置为矩阵，通过判断矩阵每行的重复数为 1，判别数组中的每个元素的公共前缀。有点曲径通幽处的感觉，很妙。题解是我看了一个老哥的解答之后优化的，那老哥直接用了生成器，两行搞定了，可能理解上需要花点时间，我就按照自己的理解写成了一般式了。
 
+6. 单向列表拼接
+
+```python
+# Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.
+
+# Example:
+# Input: 1 -> 2 -> 4, 1 -> 3 -> 4
+# Output: 1 -> 1 -> 2 -> 3 -> 4 -> 4
+
+# 来源：力扣（LeetCode）
+# 链接：https: // leetcode-cn.com/problems/merge-two-sorted-lists
+
+# Definition for singly-linked list.
+
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+class Solution:
+    def mergeTwoLists(self, l1, l2):
+        prehead = ListNode(-1)
+
+        prev = prehead
+        while l1 and l2:
+            if l1.val <= l2.val:
+                prev.next = l1
+                l1 = l1.next
+            else:
+                prev.next = l2
+                l2 = l2.next
+            prev = prev.next
+        prev.next = l1 if l1 is not None else l2
+
+        return prehead.next
+
+    def __init__(self, arr1, arr2):
+        n1 = ListNode(arr1[0])
+        x1 = ListNode(arr2[0])
+        self.mergeTwoLists(n1, x1)
+        print(self.mergeTwoLists(n1, x1).val)
+
+Solution([1, 2, 4], [1, 3, 4])
+```
+通过比较两个列表节点的大小，替换节点的方式，拼接出一个由小到大排序的有序单向列表，这题对于我来说，难点在于列表的实现，由于之前没怎么接触过链表，还得慢慢去理解。
+
 
