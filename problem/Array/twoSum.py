@@ -17,12 +17,9 @@ class Solution:
         hashmap = {}
         for i, val in enumerate(nums):
             complement = target - val
-            print('complement:', complement)
-            print('hashmap:', hashmap)
             if complement in hashmap:
                 return [hashmap[complement], i]
             hashmap[val] = i
-            print('hashmap x:', hashmap)
 
     def __init__(self, nums, target):
         print(self.twoSum(nums, target))
