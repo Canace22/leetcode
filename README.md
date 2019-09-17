@@ -4,7 +4,7 @@
 
 一、数组
 
-1. 找出数组中相加等于目标值的两个元素下标
+1. 找出数组中相加等于目标值的两个元素下标 (simple)
 
 ```python
 # 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。
@@ -42,9 +42,138 @@ Solution(nums, target)
 
 遍历列表，目标值与当前元素相减得到符合条件的元素，查找字典，如果存在符合条件的键，返回值，否则把该元素作为键，索引作为值存到字典里，重复以上步骤，直到找到对应的两个元素，返回索引列表
 
+2. 在两个有序数组中，找出中值 (difficult)
+
+```python
+# There are two sorted arrays nums1 and nums2 of size m and n respectively.
+
+# Find the median of the two sorted arrays. The overall run time complexity should be O(log(m+n)).
+
+# You may assume nums1 and nums2 cannot be both empty.
+
+# Example 1:
+# nums1 = [1, 3]
+# nums2 = [2]
+# The median is 2.0
+
+# Example 2:
+# nums1 = [1, 2]
+# nums2 = [3, 4]
+# The median is (2 + 3)/2 = 2.5
+
+# 来源：力扣（LeetCode）
+# 链接：https: // leetcode-cn.com/problems/median-of-two-sorted-arrays
+
+
+class Solution:
+    def findMedianSortedArrays(self, A, B) -> float:
+        # @param A: List[int]
+        # @param B: List[int]
+        # m, n 分别为两个数组的长度
+        m, n = len(A), len(B)
+        if m > n:
+            A, B, m, n = B, A, n, m
+        # 数组为空返回
+        if n == 0:
+            raise ValueError
+        # 初始化二分查找的最大值、最小值以及中值
+        low, high, mid = 0, m, (m + n + 1) / 2
+        # 二分查找出左域的最大值，右域的最小值
+        while low <= high:
+            i = int((low + high) / 2)
+            j = int(mid - i)
+            if i < m and B[j-1] > A[i]:
+                low = i + 1
+            elif i > 0 and A[i-1] > B[j]:
+                high = i - 1
+            else:
+                if i == 0:
+                    max_of_left = B[j-1]
+                elif j == 0:
+                    max_of_left = A[i-1]
+                else:
+                    max_of_left = max(A[i-1], B[j-1])
+
+                if (m + n) % 2 == 1:
+                    return max_of_left
+
+                if i == m:
+                    min_of_right = B[j]
+                elif j == n:
+                    min_of_right = A[i]
+                else:
+                    min_of_right = min(A[i], B[j])
+
+                return (max_of_left + min_of_right) / 2.0
+
+    def __init__(self, nums1, nums2):
+        print(self.findMedianSortedArrays(nums1, nums2))
+
+
+x = Solution([1, 3], [2])
+y = Solution([1, 2], [3, 4])
+```
+
+这个题解利用的是中值左右两边长度相等，左边的最大值小于右边的最大值的特性来判断中值，局部最大值与最小值的查找用的是二分法
+
+3. 删除数组中的重复项，返回新的长度
+
+```python
+# Given a sorted array nums, remove the duplicates in-place such that each element appear only once and return the new length.
+
+# Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.
+
+# Example 1:
+# Given nums = [1, 1, 2],
+
+# Your function should return length = 2, with the first two elements of nums being 1 and 2 respectively.
+
+# It doesn't matter what you leave beyond the returned length.
+# Example 2:
+# Given nums = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4],
+
+# Your function should return length = 5, with the first five elements of nums being modified to 0, 1, 2, 3, and 4 respectively.
+
+# It doesn't matter what values are set beyond the returned length.
+
+# 来源：力扣（LeetCode）
+# 链接：https: // leetcode - cn.com / problems / remove - duplicates - from - sorted - array
+
+
+class Solution:
+    def removeDuplicates(self, nums) -> int:
+        # @param nums: List[int]
+        # method 1:
+        if not len(nums):
+            return 0
+        i = 0
+        for item in nums:
+            if item != nums[i]:
+                i += 1
+                nums[i] = item
+        return i + 1
+        # method 2:
+        # pre, cur = 0, 1
+        # while cur < len(nums):
+        #     if nums[pre] == nums[cur]:
+        #         nums.pop(cur)
+        #     else:
+        #         pre, cur = pre+1, cur+1
+        # return len(nums)
+
+    def __init__(self, nums):
+        for item in nums:
+            print('res:', self.removeDuplicates(item))
+
+
+Solution([[1, 1, 2], [0, 0, 1, 1, 1, 2, 2, 3, 3, 4], []])
+```
+
+解这道题主要用的是双指针，首先排除数组为空的状况返回长度 0，然后初始化一个指针 i，遍历数组，若 item 等于 num[i]， 则跳过，否则，将 item 的值赋给 nums[i+1]，i 自增 1。
+
 二、其他
 
-2. 反转整数
+1. 反转整数 (simple)
 
 ```python
 # 给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。
@@ -95,7 +224,7 @@ Solution(arr)
 
 从个位开始从高到低重新排位，最后得到的就是当前整数倒过来的数字
 
-3. 括号匹配
+2. 括号匹配 (simple)
 
 ```python
 # 给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串，判断字符串是否有效。
@@ -155,7 +284,7 @@ arr = ['()', '()[]{}', "(]", "([)]", "{[]}", '']
 Solution(arr)
 ```
 
-4. 回文数判断
+3. 回文数判断 (simple)
 
 ```python
 # 判断一个整数是否是回文数。回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。
@@ -201,7 +330,7 @@ arr = [121, -121, 10]
 Solution(arr)
 ```
 
-5. 获取最长公共前缀
+4. 获取最长公共前缀 (simple)
 
 ```python
 # Write a function to find the longest common prefix string amongst an array of strings.
@@ -246,7 +375,7 @@ Solution(ex)
 ```
 这道题用到了 python 的一个独有的数据处理能力，把数组转置为矩阵，通过判断矩阵每行的重复数为 1，判别数组中的每个元素的公共前缀。有点曲径通幽处的感觉，很妙。题解是我看了一个老哥的解答之后优化的，那老哥直接用了生成器，两行搞定了，可能理解上需要花点时间，我就按照自己的理解写成了一般式了。
 
-6. 单向列表拼接
+5. 单向列表拼接 (simple)
 
 ```python
 # Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.

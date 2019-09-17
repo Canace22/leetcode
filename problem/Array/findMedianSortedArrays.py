@@ -27,16 +27,16 @@ class Solution:
             A, B, m, n = B, A, n, m
         if n == 0:
             raise ValueError
-        imin, imax, half_len = 0, m, (m + n + 1) / 2
-        while imin <= imax:
-            i = int((imin + imax) / 2)
-            j = int(half_len - i)
+        low, high, mid = 0, m, (m + n + 1) / 2
+        while low <= high:
+            i = int((low + high) / 2)
+            j = int(mid - i)
             if i < m and B[j-1] > A[i]:
                 # i is too small, must increase it
-                imin = i + 1
+                low = i + 1
             elif i > 0 and A[i-1] > B[j]:
                 # i is too big, must decrease it
-                imax = i - 1
+                high = i - 1
             else:
                 # i is perfect
 
