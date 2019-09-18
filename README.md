@@ -171,6 +171,54 @@ Solution([[1, 1, 2], [0, 0, 1, 1, 1, 2, 2, 3, 3, 4], []])
 
 解这道题主要用的是双指针，首先排除数组为空的状况返回长度 0，然后初始化一个指针 i，遍历数组，若 item 等于 num[i]， 则跳过，否则，将 item 的值赋给 nums[i+1]，i 自增 1。
 
+4. 数组原地移除目标值
+
+```python
+# Given an array nums and a value val, remove all instances of that value in-place and return the new length.
+
+# Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.
+
+# The order of elements can be changed. It doesn't matter what you leave beyond the new length.
+
+# Example 1:
+# Given nums = [3, 2, 2, 3], val = 3,
+# Your function should return length = 2, with the first two elements of nums being 2.
+# It doesn't matter what you leave beyond the returned length.
+
+# Example 2:
+# Given nums = [0, 1, 2, 2, 3, 0, 4, 2], val = 2,
+# Your function should return length = 5, with the first five elements of nums containing 0, 1, 3, 0, and 4.
+# Note that the order of those five elements can be arbitrary.
+# It doesn't matter what values are set beyond the returned length.
+
+# 来源：力扣（LeetCode）
+# 链接：https: // leetcode-cn.com/problems/remove-element
+
+
+class Solution:
+    def removeElement(self, nums, val: int) -> int:
+        # @param nums: List[int]
+        # @param val: int
+        i = 0
+        for j in range(0, len(nums)):
+            if nums[j] != val:
+                nums[i] = nums[j]
+                i += 1
+            print(nums)
+        return i
+
+    def __init__(self, test):
+        for item in test:
+            print(self.removeElement(item['nums'], item['val']))
+
+
+test = [{'nums': [3, 2, 2, 3], 'val': 3}, {
+    'nums': [0, 1, 2, 2, 3, 0, 4, 2], 'val': 2}, {'nums': [], 'val': 1}]
+Solution(test)
+```
+
+这题跟上一题解法异曲同工，也是用了双指针，把与目标值相同的节点移到末尾，最后前面的 i 位就不是我们要找的元素了，截取前面 i 位则为剔除查找元素后的新数组
+
 二、其他
 
 1. 反转整数 (simple)
