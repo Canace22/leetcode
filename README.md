@@ -116,7 +116,7 @@ y = Solution([1, 2], [3, 4])
 
 这个题解利用的是中值左右两边长度相等，左边的最大值小于右边的最大值的特性来判断中值，局部最大值与最小值的查找用的是二分法
 
-3. 删除数组中的重复项，返回新的长度
+3. 删除数组中的重复项，返回新的长度(simple)
 
 ```python
 # Given a sorted array nums, remove the duplicates in-place such that each element appear only once and return the new length.
@@ -171,7 +171,7 @@ Solution([[1, 1, 2], [0, 0, 1, 1, 1, 2, 2, 3, 3, 4], []])
 
 解这道题主要用的是双指针，首先排除数组为空的状况返回长度 0，然后初始化一个指针 i，遍历数组，若 item 等于 num[i]， 则跳过，否则，将 item 的值赋给 nums[i+1]，i 自增 1。
 
-4. 数组原地移除目标值
+4. 数组原地移除目标值(simple)
 
 ```python
 # Given an array nums and a value val, remove all instances of that value in-place and return the new length.
@@ -218,6 +218,48 @@ Solution(test)
 ```
 
 这题跟上一题解法异曲同工，也是用了双指针，把与目标值相同的节点移到末尾，最后前面的 i 位就不是我们要找的元素了，截取前面 i 位则为剔除查找元素后的新数组
+
+5. 盛最多水的容器(middle)
+
+```python
+# 给定 n 个非负整数 a1，a2，...，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0)。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。
+
+# 说明：你不能倾斜容器，且 n 的值至少为 2。
+
+# 图中垂直线代表输入数组 [1,8,6,2,5,4,8,3,7]。在此情况下，容器能够容纳水（表示为蓝色部分）的最大值为 49。
+
+# 示例:
+# 输入: [1,8,6,2,5,4,8,3,7]
+# 输出: 49
+
+# 来源：力扣（LeetCode）
+# 链接：https://leetcode-cn.com/problems/container-with-most-water
+
+
+class Solution:
+    def maxArea(self, height) -> int:
+        # @param height: List[int]
+        # 初始化指针 i, j,用于表示坐标的两端,初始化结果 res
+        i, j, res = 0, len(height) - 1, 0
+        # 按照短柱子截取坐标
+        while i < j:
+            # 左边的柱子小于右边的，则左边的柱子向右移动一格，存储大的面积
+            if height[i] < height[j]:
+                res = max(res, height[i] * (j - i))
+                i += 1
+            # 右边的柱子小于左边的，则右边的柱子向左移动一格，存储大的面积
+            else:
+                res = max(res, height[j] * (j - i))
+                j -= 1
+        return res
+
+    def __init__(self, height):
+        for item in height:
+            print(self.maxArea(item))
+
+
+Solution([[1, 8, 6, 2, 5, 4, 8, 3, 7], []])
+```
 
 二、其他
 
