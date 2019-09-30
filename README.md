@@ -4,22 +4,28 @@
 
 一、数组
 
-1. 找出数组中相加等于目标值的两个元素下标 (simple)
+1、找出数组中相加等于目标值的两个元素下标 (simple)
+
+(1) 题目：
+
+```md
+给定一个整数数组 nums  和一个目标值 target，请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。
+
+你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。
+
+示例:
+给定 nums = [2, 7, 11, 15], target = 9
+
+因为 nums[0] + nums[1] = 2 + 7 = 9
+所以返回 [0, 1]
+
+来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/two-sum
+```
+
+(2) 题解：
 
 ```python
-# 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。
-
-# 你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。
-
-# 示例:
-# 给定 nums = [2, 7, 11, 15], target = 9
-
-# 因为 nums[0] + nums[1] = 2 + 7 = 9
-# 所以返回 [0, 1]
-
-# 来源：力扣（LeetCode）
-# 链接：https://leetcode-cn.com/problems/two-sum
-
 class Solution:
     def twoSum(self, nums, target):
         hashmap = {}
@@ -42,29 +48,34 @@ Solution(nums, target)
 
 遍历列表，目标值与当前元素相减得到符合条件的元素，查找字典，如果存在符合条件的键，返回值，否则把该元素作为键，索引作为值存到字典里，重复以上步骤，直到找到对应的两个元素，返回索引列表
 
-2. 在两个有序数组中，找出中值 (difficult)
+2、 在两个有序数组中，找出中值 (difficult)
+
+(1) 题目:
+
+```md
+There are two sorted arrays nums1 and nums2 of size m and n respectively.
+
+Find the median of the two sorted arrays. The overall run time complexity should be O(log(m+n)).
+
+You may assume nums1 and nums2 cannot be both empty.
+
+Example 1:
+nums1 = [1, 3]
+nums2 = [2]
+The median is 2.0
+
+Example 2:
+nums1 = [1, 2]
+nums2 = [3, 4]
+The median is (2 + 3)/2 = 2.5
+
+来源：力扣（LeetCode）
+链接：https: // leetcode-cn.com/problems/median-of-two-sorted-arrays
+```
+
+(2) 题解：
 
 ```python
-# There are two sorted arrays nums1 and nums2 of size m and n respectively.
-
-# Find the median of the two sorted arrays. The overall run time complexity should be O(log(m+n)).
-
-# You may assume nums1 and nums2 cannot be both empty.
-
-# Example 1:
-# nums1 = [1, 3]
-# nums2 = [2]
-# The median is 2.0
-
-# Example 2:
-# nums1 = [1, 2]
-# nums2 = [3, 4]
-# The median is (2 + 3)/2 = 2.5
-
-# 来源：力扣（LeetCode）
-# 链接：https: // leetcode-cn.com/problems/median-of-two-sorted-arrays
-
-
 class Solution:
     def findMedianSortedArrays(self, A, B) -> float:
         # @param A: List[int]
@@ -116,30 +127,35 @@ y = Solution([1, 2], [3, 4])
 
 这个题解利用的是中值左右两边长度相等，左边的最大值小于右边的最大值的特性来判断中值，局部最大值与最小值的查找用的是二分法
 
-3. 删除数组中的重复项，返回新的长度(simple)
+3、 删除数组中的重复项，返回新的长度(simple)
+
+(1) 题目：
+
+```md
+Given a sorted array nums, remove the duplicates in-place such that each element appear only once and return the new length.
+
+Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.
+
+Example 1:
+Given nums = [1, 1, 2],
+
+Your function should return length = 2, with the first two elements of nums being 1 and 2 respectively.
+
+It doesn't matter what you leave beyond the returned length.
+Example 2:
+Given nums = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4],
+
+Your function should return length = 5, with the first five elements of nums being modified to 0, 1, 2, 3, and 4 respectively.
+
+It doesn't matter what values are set beyond the returned length.
+
+来源：力扣（LeetCode）
+链接：https: // leetcode - cn.com / problems / remove - duplicates - from - sorted - array
+```
+
+(2) 题解：
 
 ```python
-# Given a sorted array nums, remove the duplicates in-place such that each element appear only once and return the new length.
-
-# Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.
-
-# Example 1:
-# Given nums = [1, 1, 2],
-
-# Your function should return length = 2, with the first two elements of nums being 1 and 2 respectively.
-
-# It doesn't matter what you leave beyond the returned length.
-# Example 2:
-# Given nums = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4],
-
-# Your function should return length = 5, with the first five elements of nums being modified to 0, 1, 2, 3, and 4 respectively.
-
-# It doesn't matter what values are set beyond the returned length.
-
-# 来源：力扣（LeetCode）
-# 链接：https: // leetcode - cn.com / problems / remove - duplicates - from - sorted - array
-
-
 class Solution:
     def removeDuplicates(self, nums) -> int:
         # @param nums: List[int]
@@ -171,30 +187,35 @@ Solution([[1, 1, 2], [0, 0, 1, 1, 1, 2, 2, 3, 3, 4], []])
 
 解这道题主要用的是双指针，首先排除数组为空的状况返回长度 0，然后初始化一个指针 i，遍历数组，若 item 等于 num[i]， 则跳过，否则，将 item 的值赋给 nums[i+1]，i 自增 1。
 
-4. 数组原地移除目标值(simple)
+4、 数组原地移除目标值(simple)
+
+(1) 题目：
+
+```md
+Given an array nums and a value val, remove all instances of that value in-place and return the new length.
+
+Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.
+
+The order of elements can be changed. It doesn't matter what you leave beyond the new length.
+
+Example 1:
+Given nums = [3, 2, 2, 3], val = 3,
+Your function should return length = 2, with the first two elements of nums being 2.
+It doesn't matter what you leave beyond the returned length.
+
+Example 2:
+Given nums = [0, 1, 2, 2, 3, 0, 4, 2], val = 2,
+Your function should return length = 5, with the first five elements of nums containing 0, 1, 3, 0, and 4.
+Note that the order of those five elements can be arbitrary.
+It doesn't matter what values are set beyond the returned length.
+
+来源：力扣（LeetCode）
+链接：https: // leetcode-cn.com/problems/remove-element
+```
+
+(2) 题解：
 
 ```python
-# Given an array nums and a value val, remove all instances of that value in-place and return the new length.
-
-# Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.
-
-# The order of elements can be changed. It doesn't matter what you leave beyond the new length.
-
-# Example 1:
-# Given nums = [3, 2, 2, 3], val = 3,
-# Your function should return length = 2, with the first two elements of nums being 2.
-# It doesn't matter what you leave beyond the returned length.
-
-# Example 2:
-# Given nums = [0, 1, 2, 2, 3, 0, 4, 2], val = 2,
-# Your function should return length = 5, with the first five elements of nums containing 0, 1, 3, 0, and 4.
-# Note that the order of those five elements can be arbitrary.
-# It doesn't matter what values are set beyond the returned length.
-
-# 来源：力扣（LeetCode）
-# 链接：https: // leetcode-cn.com/problems/remove-element
-
-
 class Solution:
     def removeElement(self, nums, val: int) -> int:
         # @param nums: List[int]
@@ -219,23 +240,28 @@ Solution(test)
 
 这题跟上一题解法异曲同工，也是用了双指针，把与目标值相同的节点移到末尾，最后前面的 i 位就不是我们要找的元素了，截取前面 i 位则为剔除查找元素后的新数组
 
-5. 盛最多水的容器(middle)
+5、 盛最多水的容器(middle)
+
+(1) 题目：
+
+```md
+给定 n 个非负整数 a1，a2，...，an，每个数代表坐标中的一个点  (i, ai) 。在坐标内画 n 条垂直线，垂直线 i  的两个端点分别为  (i, ai) 和 (i, 0)。找出其中的两条线，使得它们与  x  轴共同构成的容器可以容纳最多的水。
+
+说明：你不能倾斜容器，且  n  的值至少为 2。
+
+图中垂直线代表输入数组 [1,8,6,2,5,4,8,3,7]。在此情况下，容器能够容纳水（表示为蓝色部分）的最大值为  49。
+
+示例:
+
+输入: [1,8,6,2,5,4,8,3,7]
+输出: 49
+来源：力扣（LeetCode）
+链接：https: // leetcode-cn.com/problems/3sum
+```
+
+(2) 题解：
 
 ```python
-# 给定 n 个非负整数 a1，a2，...，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0)。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。
-
-# 说明：你不能倾斜容器，且 n 的值至少为 2。
-
-# 图中垂直线代表输入数组 [1,8,6,2,5,4,8,3,7]。在此情况下，容器能够容纳水（表示为蓝色部分）的最大值为 49。
-
-# 示例:
-# 输入: [1,8,6,2,5,4,8,3,7]
-# 输出: 49
-
-# 来源：力扣（LeetCode）
-# 链接：https://leetcode-cn.com/problems/container-with-most-water
-
-
 class Solution:
     def maxArea(self, height) -> int:
         # @param height: List[int]
@@ -261,30 +287,52 @@ class Solution:
 Solution([[1, 8, 6, 2, 5, 4, 8, 3, 7], []])
 ```
 
+6、三数相加等于 0
+
+(1) 题目
+
+```md
+给定一个包含 n 个整数的数组  nums，判断  nums  中是否存在三个元素 a，b，c ，使得  a + b + c = 0 ？找出所有满足条件且不重复的三元组。
+注意：答案中不可以包含重复的三元组。
+例如, 给定数组 nums = [-1, 0, 1, 2, -1, -4]，满足要求的三元组集合为：
+[
+[-1, 0, 1],
+[-1, -1, 2]
+]
+来源：力扣（LeetCode）
+链接：https: // leetcode-cn.com/problems/3sum
+```
+
 二、其他
 
-1. 反转整数 (simple)
+1、 反转整数 (simple)
+
+(1) 题目：
+
+```md
+给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。
+
+示例  1:
+输入: 123
+输出: 321
+  示例 2:
+输入: -123
+输出: -321
+
+示例 3:
+输入: 120
+输出: 21
+
+注意:
+假设我们的环境只能存储得下 32 位的有符号整数，则其数值范围为  [−231, 231 − 1]。请根据这个假设，如果反转后整数溢出那么就返回 0。
+
+来源：力扣（LeetCode）
+链接：https: // leetcode-cn.com/problems/reverse-integer
+```
+
+(2) 题解：
 
 ```python
-# 给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。
-
-# 示例 1:
-# 输入: 123
-# 输出: 321
-#  示例 2:
-# 输入: -123
-# 输出: -321
-
-# 示例 3:
-# 输入: 120
-# 输出: 21
-
-# 注意:
-# 假设我们的环境只能存储得下 32 位的有符号整数，则其数值范围为 [−231, 231 − 1]。请根据这个假设，如果反转后整数溢出那么就返回 0。
-
-# 来源：力扣（LeetCode）
-# 链接：https: // leetcode-cn.com/problems/reverse-integer
-
 class Solution:
     def reverse(self, x):
         INT_MAX = 2**31
@@ -314,39 +362,45 @@ Solution(arr)
 
 从个位开始从高到低重新排位，最后得到的就是当前整数倒过来的数字
 
-2. 括号匹配 (simple)
+2、括号匹配 (simple)
+
+(1) 题目：
+
+```md
+给定一个只包括 '('，')'，'{'，'}'，'['，']'  的字符串，判断字符串是否有效。
+
+有效字符串需满足：
+左括号必须用相同类型的右括号闭合。
+左括号必须以正确的顺序闭合。
+注意空字符串可被认为是有效字符串。
+
+示例 1:
+输入: "()"
+输出: true
+
+示例  2:
+输入: "()[]{}"
+输出: true
+
+示例  3:
+输入: "(]"
+输出: false
+
+示例  4:
+输入: "([)]"
+输出: false
+
+示例  5:
+输入: "{[]}"
+输出: true
+
+来源：力扣（LeetCode）
+链接：https: // leetcode-cn.com/problems/valid-parentheses
+```
+
+(2)题解：
 
 ```python
-# 给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串，判断字符串是否有效。
-
-# 有效字符串需满足：
-# 左括号必须用相同类型的右括号闭合。
-# 左括号必须以正确的顺序闭合。
-# 注意空字符串可被认为是有效字符串。
-
-# 示例 1:
-# 输入: "()"
-# 输出: true
-
-# 示例 2:
-# 输入: "()[]{}"
-# 输出: true
-
-# 示例 3:
-# 输入: "(]"
-# 输出: false
-
-# 示例 4:
-# 输入: "([)]"
-# 输出: false
-
-# 示例 5:
-# 输入: "{[]}"
-# 输出: true
-
-# 来源：力扣（LeetCode）
-# 链接：https: // leetcode-cn.com/problems/valid-parentheses
-
 class Solution:
     def isValid(self, s):
         # 简洁但是效率低
@@ -374,28 +428,34 @@ arr = ['()', '()[]{}', "(]", "([)]", "{[]}", '']
 Solution(arr)
 ```
 
-3. 回文数判断 (simple)
+3、回文数判断 (simple)
+
+(1) 题目：
+
+```md
+判断一个整数是否是回文数。回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。
+
+示例 1:
+输入: 121
+输出: true
+
+示例  2:
+输入: -121
+输出: false
+解释: 从左向右读, 为 - 121 。 从右向左读, 为 121 - 。因此它不是一个回文数。
+
+示例 3:
+输入: 10
+输出: false
+解释: 从右向左读, 为 01 。因此它不是一个回文数。
+
+来源：力扣（LeetCode）
+链接：https: // leetcode-cn.com/problems/palindrome-number
+```
+
+(2) 题解：
 
 ```python
-# 判断一个整数是否是回文数。回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。
-
-# 示例 1:
-# 输入: 121
-# 输出: true
-
-# 示例 2:
-# 输入: -121
-# 输出: false
-# 解释: 从左向右读, 为 - 121 。 从右向左读, 为 121 - 。因此它不是一个回文数。
-
-# 示例 3:
-# 输入: 10
-# 输出: false
-# 解释: 从右向左读, 为 01 。因此它不是一个回文数。
-
-# 来源：力扣（LeetCode）
-# 链接：https: // leetcode-cn.com/problems/palindrome-number
-
 class Solution:
     def isPalindrome(self, x: int) -> bool:
         # x 若是 0 或者负数，返回 false
@@ -420,28 +480,34 @@ arr = [121, -121, 10]
 Solution(arr)
 ```
 
-4. 获取最长公共前缀 (simple)
+4、 获取最长公共前缀 (simple)
+
+(1) 题目：
+
+```md
+Write a function to find the longest common prefix string amongst an array of strings.
+
+If there is no common prefix, return an empty string "".
+
+Example 1:
+Input: ["flower", "flow", "flight"]
+Output: "fl"
+
+Example 2:
+Input: ["dog", "racecar", "car"]
+Output: ""
+Explanation: There is no common prefix among the input strings.
+
+Note:
+All given inputs are in lowercase letters a-z.
+
+来源：力扣（LeetCode）
+链接：https: // leetcode-cn.com/problems/longest-common-prefix
+```
+
+(2) 题解：
 
 ```python
-# Write a function to find the longest common prefix string amongst an array of strings.
-
-# If there is no common prefix, return an empty string "".
-
-# Example 1:
-# Input: ["flower", "flow", "flight"]
-# Output: "fl"
-
-# Example 2:
-# Input: ["dog", "racecar", "car"]
-# Output: ""
-# Explanation: There is no common prefix among the input strings.
-
-# Note:
-# All given inputs are in lowercase letters a-z.
-
-# 来源：力扣（LeetCode）
-# 链接：https: // leetcode-cn.com/problems/longest-common-prefix
-
 class Solution:
     def longestCommonPrefix(self, strs) -> str:
         if not strs:
@@ -463,22 +529,29 @@ class Solution:
 ex = [["dog", "racecar", "car"], ["flower", "flow", "flight"], []]
 Solution(ex)
 ```
+
 这道题用到了 python 的一个独有的数据处理能力，把数组转置为矩阵，通过判断矩阵每行的重复数为 1，判别数组中的每个元素的公共前缀。有点曲径通幽处的感觉，很妙。题解是我看了一个老哥的解答之后优化的，那老哥直接用了生成器，两行搞定了，可能理解上需要花点时间，我就按照自己的理解写成了一般式了。
 
-5. 单向列表拼接 (simple)
+5、 单向列表拼接 (simple)
+
+(1) 题目：
+
+```md
+Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.
+
+Example:
+Input: 1 -> 2 -> 4, 1 -> 3 -> 4
+Output: 1 -> 1 -> 2 -> 3 -> 4 -> 4
+
+来源：力扣（LeetCode）
+链接：https: // leetcode-cn.com/problems/merge-two-sorted-lists
+
+Definition for singly-linked list.
+```
+
+(2) 题解：
 
 ```python
-# Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.
-
-# Example:
-# Input: 1 -> 2 -> 4, 1 -> 3 -> 4
-# Output: 1 -> 1 -> 2 -> 3 -> 4 -> 4
-
-# 来源：力扣（LeetCode）
-# 链接：https: // leetcode-cn.com/problems/merge-two-sorted-lists
-
-# Definition for singly-linked list.
-
 class ListNode:
     def __init__(self, x):
         self.val = x
@@ -509,6 +582,5 @@ class Solution:
 
 Solution([1, 2, 4], [1, 3, 4])
 ```
+
 通过比较两个列表节点的大小，替换节点的方式，拼接出一个由小到大排序的有序单向列表，这题对于我来说，难点在于列表的实现，由于之前没怎么接触过链表，还得慢慢去理解。
-
-
