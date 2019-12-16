@@ -20,6 +20,7 @@ class Solution:
             if complement in hashmap:
                 return [hashmap[complement], i]
             hashmap[val] = i
+        return []
 
     def __init__(self, nums, target):
         print(self.twoSum(nums, target))
