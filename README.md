@@ -638,13 +638,9 @@ B. 把结果加起来就是结果了
 
 这里需要注意的是我们输入的是字符串，输出的也是字符串，这里面要考虑变量类型转换的问题，此外为什么这么简单的数字相乘要弄得这么复杂，是因为在计算很大的数字时有些语言的结果可能不对，所以只能用这种曲线救国的方案去调优。
 
+求两字符串相加的和
+
 ```js
-/**
- * @param {string} num1
- * @param {string} num2
- * @return {string}
- */
-// 求两字符串相加的和
 var sum = function(num1, num2) {
   // 确定num1为长字符串，num2为短字符串
   if (num1.length < num2.length) {
@@ -684,7 +680,16 @@ var sum = function(num1, num2) {
   }
   return result.join("");
 };
-// 求两字符串相乘的积
+```
+
+求两字符串相乘的积
+
+```js
+/**
+ * @param {string} num1
+ * @param {string} num2
+ * @return {string}
+ */
 var multiply = function(num1, num2) {
   let res = "0";
   if (num2.length === 0 || num2.length === 0 || num1 === "0" || num2 === "0") {
