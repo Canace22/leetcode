@@ -1,6 +1,8 @@
-# leetcode-note
+# 算法合集
 
-> 每日算法练习记录
+> 算法记录
+
+### 一、 leetcode
 
 [简单](problem/simple/readme.md)
 
@@ -8,5 +10,10 @@
 
 [困难](problem/diff/readme.md)
 
+### 二、生活
 
+[生活中的算法](problem/life/readme.md)
 
+### 三、工作
+
+[工作时用到的算法](problem/work/readme.md)
