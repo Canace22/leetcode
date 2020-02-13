@@ -21,12 +21,11 @@ var twoSum = function(nums, target) {
   for (let index = 0; index < nums.length; index++) {
     const element = nums[index];
     const complement = target - element;
-    if (hashMap[complement]) {
-      return [hashMap[complement] - 1, index];
+    if (hashMap[complement] + 1) {
+      return [hashMap[complement], index];
     }
-    hashMap[element] = index + 1;
+    hashMap[element] = index;
   }
   return [];
 };
 const res = twoSum([2, 7, 11, 15], 9);
-console.log(res);
