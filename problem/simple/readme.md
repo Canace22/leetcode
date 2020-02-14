@@ -52,16 +52,17 @@ var twoSum = function(nums, target) {
   for (let index = 0; index < nums.length; index++) {
     const element = nums[index];
     const complement = target - element;
-    if (hashMap[complement]) {
-      return [hashMap[complement] - 1, index];
+    if (hashMap[complement] + 1) {
+      return [hashMap[complement], index];
     }
-    hashMap[element] = index + 1;
+    hashMap[element] = index;
   }
   return [];
 };
+const res = twoSum([2, 7, 11, 15], 9);
 ```
 
-遍历列表，目标值与当前元素相减得到符合条件的元素，查找字典，如果存在符合条件的键，返回值，否则把该元素作为键，索引作为值存到字典里，重复以上步骤，直到找到对应的两个元素，返回索引列表,若未找到，返回空数组。对比一下两种语言的执行结果，不难发现，同样的算法，python在内存消耗和执行时间上都优于 JS。
+遍历列表，目标值与当前元素相减得到符合条件的元素，查找字典，如果存在符合条件的键，返回值，否则把该元素作为键，索引作为值存到字典里，重复以上步骤，直到找到对应的两个元素，返回索引列表,若未找到，返回空数组。对比一下两种语言的执行结果，不难发现，同样的算法，python 在内存消耗和执行时间上都优于 JS。
 
 ### 二、 删除数组中的重复项，返回新的长度(simple)
 
@@ -175,7 +176,6 @@ Solution(test)
 ```
 
 这题跟上一题解法异曲同工，也是用了双指针，把与目标值相同的节点移到末尾，最后前面的 i 位就不是我们要找的元素了，截取前面 i 位则为剔除查找元素后的新数组
-
 
 ### 四、反转整数 (simple)
 
@@ -457,5 +457,81 @@ Solution([1, 2, 4], [1, 3, 4])
 
 通过比较两个列表节点的大小，替换节点的方式，拼接出一个由小到大排序的有序单向列表，这题对于我来说，难点在于列表的实现，由于之前没怎么接触过链表，还得慢慢去理解。
 
+### 九、爬楼梯
 
+**题目**
 
+```md
+假设你正在爬楼梯。需要 n  阶你才能到达楼顶。
+
+每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？
+
+注意：给定 n 是一个正整数。
+
+示例 1：
+
+输入： 2
+输出： 2
+解释： 有两种方法可以爬到楼顶。
+
+1.  1 阶 + 1 阶
+2.  2 阶
+
+示例 2：
+
+输入： 3
+输出： 3
+解释： 有三种方法可以爬到楼顶。
+
+1.  1 阶 + 1 阶 + 1 阶
+2.  1 阶 + 2 阶
+3.  2 阶 + 1 阶
+
+来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/climbing-stairs
+```
+
+**题解**
+
+(1) 暴力破解法，动态规划，把问题缩小为 1 阶和 2 阶问题，这种写法的问题是效率太低，提交之后没通过，因为超时了。
+
+```js
+var climbStairs = function(n) {
+  return climb_stairs(0, n);
+};
+
+var climb_stairs = function(i, n) {
+  if (i > n) {
+    return 0;
+  }
+  if (i === n) {
+    return 1;
+  }
+  return climb_stairs(i + 1, n) + climb_stairs(i + 2, n);
+};
+```
+
+(2) 记忆化递归，优化了上述算法，每次递归之后吧值存起来，减少冗余
+
+```js
+var climbStairs = function(n) {
+  const memo = [];
+  return climb_stairs(0, n, memo);
+};
+
+var climb_stairs = function(i, n, memo) {
+  if (i > n) {
+    return 0;
+  }
+  if (i === n) {
+    return 1;
+  }
+  if (memo[i] > 0) {
+    return memo[i];
+  }
+
+  memo[i] = climb_stairs(i + 1, n, memo) + climb_stairs(i + 2, n, memo);
+
+  return memo[i];
+};
+```
