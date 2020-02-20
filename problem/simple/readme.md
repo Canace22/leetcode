@@ -179,37 +179,83 @@ Solution(test)
 
 ### 四、反转整数 (simple)
 
-**题目：**
+**题目**
 
-```md
-给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。
+```
+# 给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。
 
-示例  1:
-输入: 123
-输出: 321
-  示例 2:
-输入: -123
-输出: -321
+# 示例 1:
+# 输入: 123
+# 输出: 321
 
-示例 3:
-输入: 120
-输出: 21
+#  示例 2:
+# 输入: -123
+# 输出: -321
 
-注意:
-假设我们的环境只能存储得下 32 位的有符号整数，则其数值范围为  [−231, 231 − 1]。请根据这个假设，如果反转后整数溢出那么就返回 0。
+# 示例 3:
+# 输入: 120
+# 输出: 21
+# 注意:
 
-来源：力扣（LeetCode）
-链接：https: // leetcode-cn.com/problems/reverse-integer
+# 假设我们的环境只能存储得下 32 位的有符号整数，则其数值范围为 [−231, 231 − 1]。请根据这个假设，如果反转后整数溢出那么就返回 0。
+
+# 来源：力扣（LeetCode）
+# 链接：https: // leetcode-cn.com/problems/reverse-integer
 ```
 
-**题解：**
+**思路**
+
+1、 确定最大边界值和最小边界值
+
+2、 当数字不等于 0 时，执行以下操作：
+
+(1) 获取当前位数字（整数）
+
+(2) 获取去掉当前位数字后，余下的数字（整数）
+
+(3) 按位与边界值比较，若当前位数字大于最大边界值去掉最高位或者当前位数字等于最大边界值去掉最高位而且接下来要添加的数字大于 7，则溢出，返回 0，这里 7 作为下一位的判断值，是因为最大边界值的最后一位是 7
+
+(4) 按位与边界值比较，若当前位数字小于于最小边界值去掉最高位或者当前位数字等于最小边界值去掉最高位而且接下来要添加的数字小于 -8，则溢出，返回 0，这里 -8 作为下一位的判断值，是因为最小边界值的最后一位是 8
+
+(5) 否则，数字反转
+
+**题解**
+
+js 题解
+
+```js
+/**
+ * @param {number} x
+ * @return {number}
+ */
+var reverse = function(x) {
+  const edge = 2 ** 31;
+  const INT_MAX = edge - 1;
+  const INT_MIN = -edge;
+
+  let rev = 0;
+  while (x !== 0) {
+    const pop = ~~(x % 10);
+
+    x = ~~(x / 10);
+    if (rev > INT_MAX / 10 || (rev === INT_MAX / 10 && pop > 7)) return 0;
+    if (rev < INT_MIN / 10 || (rev === INT_MIN / 10 && pop < -8)) return 0;
+    rev = rev * 10 + pop;
+  }
+  return rev;
+};
+
+console.log('123:', reverse(123));
+console.log('-123:', reverse(-123));
+```
+
+python 题解
 
 ```python
 class Solution:
     def reverse(self, x):
         INT_MAX = 2**31
-        INT_MIN = -2 ** 31
-        print(INT_MAX, INT_MIN)
+        INT_MIN = -2**31
         cur = 0
         while x != 0:
             if (x < 0):
@@ -224,15 +270,13 @@ class Solution:
             x = int(x/10)
         return cur
 
-    def __init__(self, arr):
-        for item in arr:
-            print(self.reverse(item))
+    def _init_(self):
+        print(res.reverse(-123))
+        return self.reverse(-123)
 
-arr = [123, -123, 120]
-Solution(arr)
+res = Solution()
+res._init_()
 ```
-
-从个位开始从高到低重新排位，最后得到的就是当前整数倒过来的数字
 
 ### 五、括号匹配 (simple)
 
@@ -534,4 +578,95 @@ var climb_stairs = function(i, n, memo) {
 
   return memo[i];
 };
+```
+
+### 十、罗马数字转整数
+
+**题目**
+
+```js
+// 罗马数字包含以下七种字符: I， V， X， L，C，D 和 M。
+
+// 字符          数值
+// I             1
+// V             5
+// X             10
+// L             50
+// C             100
+// D             500
+// M             1000
+// 例如， 罗马数字 2 写做 II ，即为两个并列的 1。12 写做 XII ，即为 X + II 。 27 写做  XXVII, 即为 XX + V + II 。
+
+// 通常情况下，罗马数字中小的数字在大的数字的右边。但也存在特例，例如 4 不写做 IIII，而是 IV。数字 1 在数字 5 的左边，所表示的数等于大数 5 减小数 1 得到的数值 4 。同样地，数字 9 表示为 IX。这个特殊的规则只适用于以下六种情况：
+
+// I 可以放在 V (5) 和 X (10) 的左边，来表示 4 和 9。
+// X 可以放在 L (50) 和 C (100) 的左边，来表示 40 和 90。
+// C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。
+// 给定一个罗马数字，将其转换成整数。输入确保在 1 到 3999 的范围内。
+
+// 来源：力扣（LeetCode）
+// 链接：https://leetcode-cn.com/problems/roman-to-integer
+```
+
+**思路**
+
+1. 把罗马数字对应整数的规则存到哈希表里进行映射
+
+2. 罗马数字分两种情况，一种是正常的一个一个相加的，一种是小的数字在前面，需要用后一个数字减去前面一个数字，这种情况
+
+3. 遍历罗马数字
+   - 如果跟后一个数字组合，不在哈希表里，则直接跟上一次的结果相加，跳到下一个数字
+   - 如果跟后一个数字组合，结果在哈希表里，则跟该组合的值跟上一次的结果相加，跳到下下个数字
+
+**题解**
+
+```js
+/**
+ * @param {string}
+ * @return {number}
+ */
+var romanToInt = function(s) {
+  const map = {
+    I: 1,
+    V: 5,
+    X: 10,
+    L: 50,
+    C: 100,
+    D: 500,
+    M: 1000,
+    IV: 4,
+    IX: 9,
+    XL: 40,
+    XC: 90,
+    CD: 400,
+    CM: 900
+  };
+  const { length } = s;
+  let res = 0;
+
+  for (let i = 0; i < length; ) {
+    if (map[s[i] + s[i + 1]]) {
+      res += map[s[i] + s[i + 1]];
+      i += 2;
+    } else {
+      res += map[s[i]];
+      i += 1;
+    }
+  }
+  return res;
+};
+
+// romanToInt('III');
+// romanToInt('IV');
+// romanToInt('MCMXCIV');
+// romanToInt('MCDLXXVI');
+
+console.log('III', romanToInt('III'));
+console.log('IV', romanToInt('IV'));
+console.log('IX', romanToInt('IX'));
+console.log('LVIII', romanToInt('LVIII'));
+console.log('MCMXCIV', romanToInt('MCMXCIV'));
+console.log('MCDLXXVI', romanToInt('MCDLXXVI'));
+console.log('MMCDXXV', romanToInt('MMCDXXV'));
+console.log('CMLII', romanToInt('CMLII'));
 ```
