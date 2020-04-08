@@ -46,7 +46,7 @@ class Solution:
  * @param {number} target
  * @return {number[]}
  */
-var twoSum = function(nums, target) {
+var twoSum = function (nums, target) {
   const hashMap = {};
 
   for (let index = 0; index < nums.length; index++) {
@@ -228,7 +228,7 @@ js 题解
  * @param {number} x
  * @return {number}
  */
-var reverse = function(x) {
+var reverse = function (x) {
   const edge = 2 ** 31;
   const INT_MAX = edge - 1;
   const INT_MIN = -edge;
@@ -371,6 +371,8 @@ Solution(arr)
 
 **题解：**
 
+python 题解：
+
 ```python
 class Solution:
     def isPalindrome(self, x: int) -> bool:
@@ -394,6 +396,32 @@ class Solution:
 
 arr = [121, -121, 10]
 Solution(arr)
+```
+
+js 题解：
+
+```js
+/**
+ * @param {number} x
+ * @return {boolean}
+ */
+var isPalindrome = function (x) {
+  // 当 x 为 负数或者 x 的最后一位为 0 时，不满足条件，返回 false
+  if (~~x < 0 || (~~x % 10 === 0 && x !== 0)) {
+    return false;
+  }
+  let rev = 0;
+  // x 的 前半部分大于后半部分反转值，继续推出 x 后一位，推入 rev
+  while (~~x > rev) {
+    rev = rev * 10 + (~~x % 10);
+    x /= 10;
+  }
+  //  当 x 为 偶数位时，满足回文的条件是前半部分等于后半部分反转数，当 x 为奇数时，x 的前半部分数字等于中值后面数字的反转值
+  return ~~x === rev || ~~x === ~~(rev / 10);
+};
+console.log(isPalindrome(121));
+console.log(isPalindrome(-121));
+console.log(isPalindrome(10));
 ```
 
 ### 七、 获取最长公共前缀 (simple)
@@ -540,11 +568,11 @@ Solution([1, 2, 4], [1, 3, 4])
 (1) 暴力破解法，动态规划，把问题缩小为 1 阶和 2 阶问题，这种写法的问题是效率太低，提交之后没通过，因为超时了。
 
 ```js
-var climbStairs = function(n) {
+var climbStairs = function (n) {
   return climb_stairs(0, n);
 };
 
-var climb_stairs = function(i, n) {
+var climb_stairs = function (i, n) {
   if (i > n) {
     return 0;
   }
@@ -558,12 +586,12 @@ var climb_stairs = function(i, n) {
 (2) 记忆化递归，优化了上述算法，每次递归之后吧值存起来，减少冗余
 
 ```js
-var climbStairs = function(n) {
+var climbStairs = function (n) {
   const memo = [];
   return climb_stairs(0, n, memo);
 };
 
-var climb_stairs = function(i, n, memo) {
+var climb_stairs = function (i, n, memo) {
   if (i > n) {
     return 0;
   }
@@ -625,7 +653,7 @@ var climb_stairs = function(i, n, memo) {
  * @param {string}
  * @return {number}
  */
-var romanToInt = function(s) {
+var romanToInt = function (s) {
   const map = {
     I: 1,
     V: 5,
@@ -639,7 +667,7 @@ var romanToInt = function(s) {
     XL: 40,
     XC: 90,
     CD: 400,
-    CM: 900
+    CM: 900,
   };
   const { length } = s;
   let res = 0;
@@ -669,4 +697,45 @@ console.log('MCMXCIV', romanToInt('MCMXCIV'));
 console.log('MCDLXXVI', romanToInt('MCDLXXVI'));
 console.log('MMCDXXV', romanToInt('MMCDXXV'));
 console.log('CMLII', romanToInt('CMLII'));
+```
+
+### 十一、生成指定范围的随机数组
+
+**题目**
+
+```md
+输入范围，输出随机组成的数组，比如输入 minNum、maxNum、option，返回 minNum 与 maxNum 间的随机数组构成的 option 长度的数组
+```
+
+**思路**
+
+1. 求出随机数的范围 maxNum - minNum + 1
+
+2. 指定范围的随机数算法 Math.random() \* len
+
+3. 遍历 option,若生成的随机数不在 minNum 与 maxNum 范围内，则重新计算，否则，添加随机数到数组
+
+4. 返回随机数组成的数组
+
+**题解**
+
+```js
+function MakeRandomList(minNum, maxNum, option) {
+  let res = [];
+  const len = maxNum - minNum + 1;
+
+  for (let i = 0; i < option; i++) {
+    const random = Math.floor(Math.random() * len);
+    if (random < minNum || random > maxNum) {
+      i--;
+      continue;
+    }
+    res.push(random);
+  }
+
+  return res;
+}
+
+const test = MakeRandomList(2, 6, 5);
+console.log(test);
 ```
