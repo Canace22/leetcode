@@ -12,7 +12,6 @@ function sectionToCh(num) {
     '九',
   ];
   const chnUnitChar = ['', '十', '百', '千', '万','十万', '百万', '千万', '亿', '万亿', '亿亿'];
-  let strIns = '';
   let res = '';
   let unitPos = 0;
   let zero = true;
