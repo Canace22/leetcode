@@ -3,28 +3,41 @@
  * @param {number} target
  * @return {number[]}
  */
-var twoSum = function (nums, target) {
-  // brute force Runtime: 112 ms 37MB
-  for (let i = 0; i < nums.length; i++) {
-    for (let j = i + 1; j < nums.length; j++){
-      if (nums[j] === target - nums[i]) {
-        return [i,j]
-      }
-    }
-  }
-  // two-pass hash table Runtime: 72 ms 37.9MB
-  const map = new Map()
-  for (let i = 0; i < nums.length; i++) {
-    map.set(nums[i],i)
-  }
-  for (let i = 0; i < nums.length; i++) {
-    const complement = target - nums[i]
+var twoSum = (nums, target) => {
+  const len = nums.length;
+  // 暴力破解法
+  // for (let i = 0; i < len; i++) {
+  //   for (let j = i + 1; j < len; j++) {
+  //     if (nums[j] === target - nums[i]) {
+  //       return [i, j];
+  //     }
+  //   }
+  // }
+  // return [];
+  // 两遍哈希表
+  // const map = new Map();
+  // for (let i = 0; i < len; i++) {
+  //   map.set(nums[i], i);
+  // }
+  // for (let i = 0; i < len; i++) {
+  //   const complement = target - nums[i];
+  //   if (map.has(complement) && map.get(complement) !== i) {
+  //     return [i, map.get(complement)];
+  //   }
+  // }
+  // return [];
+  // 一遍哈希表
+  const map = new Map();
+  for (let i = 0; i < len; i++) {
+    const complement = target - nums[i];
     if (map.has(complement) && map.get(complement) !== i) {
-      return [i, map.get(complement)];
+      return [map.get(complement), i];
+    } else {
+      map.set(nums[i], i);
     }
   }
-  throw 'No two sum solution';
+  return [];
 };
 
-const res = twoSum([2, 7, 11, 15],9);
-console.log('result:',res);
+var res = twoSum([2, 7, 11, 15], 0);
+console.log('result:', res);
