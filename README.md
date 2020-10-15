@@ -1,2 +1,4 @@
-# leetcode
-leetcode 刷题笔记
+# 算法合集
+
+> 算法记录
+
