@@ -38,15 +38,4 @@ var findMedianSortedArrays = function (nums1, nums2) {
     : (merged[length / 2] + merged[length / 2 - 1]) / 2;
 };
 
-const test = [
-  [[1, 3], [2]],
-  [
-    [1, 2],
-    [3, 4]
-  ]
-];
-
-test.forEach((ele) => {
-  const res = findMedianSortedArrays(ele[0], ele[1]);
-  console.log(res);
-});
+module.exports = findMedianSortedArrays;

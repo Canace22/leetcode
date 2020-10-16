@@ -36,16 +36,4 @@ var romanToInt = function (s) {
   return res;
 };
 
-// romanToInt('III');
-// romanToInt('IV');
-// romanToInt('MCMXCIV');
-// romanToInt('MCDLXXVI');
-
-console.log('III', romanToInt('III'));
-console.log('IV', romanToInt('IV'));
-console.log('IX', romanToInt('IX'));
-console.log('LVIII', romanToInt('LVIII'));
-console.log('MCMXCIV', romanToInt('MCMXCIV'));
-console.log('MCDLXXVI', romanToInt('MCDLXXVI'));
-console.log('MMCDXXV', romanToInt('MMCDXXV'));
-console.log('CMLII', romanToInt('CMLII'));
+module.exports = romanToInt;

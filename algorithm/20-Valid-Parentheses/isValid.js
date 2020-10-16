@@ -1,5 +1,5 @@
 //  一刷时间: 2019
-//  链接：https: // leetcode-cn.com/problems/valid-parentheses
+//  链接：https://leetcode-cn.com/problems/valid-parentheses
 
 /**
  * @param {string} s
@@ -29,3 +29,5 @@ var isValid = function (s) {
   if (stack.length > 0) return false;
   return valid;
 };
+
+module.exports = isValid;

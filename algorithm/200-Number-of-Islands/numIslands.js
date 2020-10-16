@@ -31,31 +31,11 @@ var numIslands = function (grid) {
   return num_isLands;
 };
 
-const test1 = [
-  ['1', '1', '1', '1', '0'],
-  ['1', '1', '0', '1', '0'],
-  ['1', '1', '0', '0', '0'],
-  ['0', '0', '0', '0', '0']
-];
-const test2 = [
-  ['1', '1', '0', '0', '0'],
-  ['1', '1', '0', '0', '0'],
-  ['0', '0', '1', '0', '0'],
-  ['0', '0', '0', '1', '1']
-];
+module.exports = numIslands;
 
-const test4 = [
-  ['1', '1', '1', '1', '1'],
-  ['1', '1', '1', '1', '1'],
-  ['1', '1', '1', '1', '1'],
-  ['1', '1', '1', '1', '1']
-];
 
-const res1 = numIslands(test1);
-const res2 = numIslands(test2);
-const res3 = numIslands([]);
-const res4 = numIslands(test4);
-console.log(res1);
-console.log(res2);
-console.log(res3);
-console.log(res4);
+
+
+
+
+

@@ -1,5 +1,5 @@
 // 一刷时间: 2020
-// 来源: https:leetcode-cn.com/problems/remove-duplicates-from-sorted-array/
+// 来源: https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/
 
 /**
  * @param {number[]} nums
@@ -20,13 +20,4 @@ var removeDuplicates = function (nums) {
   return i + 1;
 };
 
-const test = [
-  [1, 1, 2],
-  [0, 0, 1, 1, 1, 2, 2, 3, 3, 4]
-];
-
-test.forEach((ele) => {
-  const res = removeDuplicates(ele);
-  console.log('result:', res);
-  console.log(ele.slice(0, res));
-});
+module.exports = removeDuplicates;

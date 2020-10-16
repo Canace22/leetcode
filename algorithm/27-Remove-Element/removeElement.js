@@ -21,13 +21,4 @@ var removeElement = function (nums, val) {
   return i;
 };
 
-const test = [
-  [[3, 2, 2, 3], 3],
-  [[0, 1, 2, 2, 3, 0, 4, 2], 2]
-];
-
-test.forEach((ele) => {
-  const res = removeElement(ele[0], ele[1]);
-
-  console.log('result:', res);
-});
+module.exports = removeElement;

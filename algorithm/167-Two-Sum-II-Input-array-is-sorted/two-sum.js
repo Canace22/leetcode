@@ -20,3 +20,4 @@ var twoSum = function (numbers, target) {
   }
   return [];
 };
+module.exports = twoSum;

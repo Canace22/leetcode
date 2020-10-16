@@ -42,6 +42,4 @@ var climb_stairs = function (i, n, memo) {
 
   return memo[i];
 };
-console.log('2:', climbStairs(2));
-console.log('3:', climbStairs(3));
-console.log('5:', climbStairs(5));
+module.exports = climbStairs;

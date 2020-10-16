@@ -38,6 +38,5 @@ var reverseWords = function (s) {
   return res.join(' ');
 };
 
-const res = reverseWords('  hello world!  ');
+module.exports = reverseWords;
 
-console.log(res);

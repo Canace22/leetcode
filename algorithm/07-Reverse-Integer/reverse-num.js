@@ -22,5 +22,4 @@ var reverse = function (x) {
   return rev;
 };
 
-console.log('123:', reverse(123));
-console.log('-123:', reverse(-123));
+module.exports = reverse;

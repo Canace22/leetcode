@@ -34,15 +34,8 @@ var combinationSum2 = function (candidates, target) {
     }
   };
   dfs([], target, 0);
+
   return ans;
 };
 
-const test = [
-  { candidates: [10, 1, 2, 7, 6, 1, 5], target: 8 },
-  { candidates: [2, 5, 2, 1, 2], target: 5 }
-];
-
-test.forEach((ele) => {
-  console.log(combinationSum2(ele.candidates, ele.target));
-  // combinationSum2(ele.candidates, ele.target);
-});
+module.exports = combinationSum2;

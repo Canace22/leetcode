@@ -43,6 +43,4 @@ var twoSum = (nums, target) => {
   }
   return [];
 };
-
-var res = twoSum([2, 7, 11, 15], 0);
-console.log('result:', res);
+module.exports = twoSum;

@@ -1,4 +1,4 @@
-const data = require('./data/test')
+const data = require('./data/data');
 function buildTopicWithSection (courseware, name = []) {
   // @param 
   // courseware: []

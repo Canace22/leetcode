@@ -19,6 +19,5 @@ var isPalindrome = function (x) {
   //  当 x 为 偶数位时，满足回文的条件是前半部分等于后半部分反转数，当 x 为奇数时，x 的前半部分数字等于中值后面数字的反转值
   return ~~x === rev || ~~x === ~~(rev / 10);
 };
-console.log(isPalindrome(121));
-console.log(isPalindrome(-121));
-console.log(isPalindrome(10));
+module.exports = isPalindrome;
+
