@@ -1,5 +1,6 @@
 // 一刷时间: 2020-10-16
 // 来源: https://leetcode-cn.com/problems/squares-of-a-sorted-array/
+// 考察数组的排序
 
 /**
  * @param {number[]} A

@@ -1,4 +1,4 @@
-const sortedSquares = require('../../algorithm/977-有序数组的平方/sortedSquares');
+const sortedSquares = require('../../algorithm/977-Squares-of-a-Sorted-Array/sortedSquares');
 
 test('给定一个按非递减顺序排序的整数数组 A，返回每个数字的平方组成的新数组，要求也按非递减顺序排序', () => {
   const input = [
