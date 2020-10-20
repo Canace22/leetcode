@@ -6,12 +6,13 @@ function Node(element) {
 
 class ListClass {
   constructor() {
-    this.head = new Node("head"); //头节点
+    this.head = new Node('head'); //头节点
   }
   //查找给定节点
   find(item) {
     let currNode = this.head;
-    while (currNode.element != item) {
+
+    while (currNode && currNode.element != item) {
       currNode = currNode.next;
     }
     return currNode;
@@ -26,15 +27,18 @@ class ListClass {
   //显示链表元素
   display() {
     let currNode = this.head;
+    let arr = [];
     while (!(currNode.next == null)) {
-      console.log(currNode.next);
       currNode = currNode.next;
+      arr.push(currNode.next);
     }
+
+    return arr;
   }
   //查找带删除节点的前一个节点
   findPrev(item) {
     let currNode = this.head;
-    while (!(currNode.next == null) && currNode.next.element != item) {
+    while (currNode && currNode.next && currNode.next.element != item) {
       currNode = currNode.next;
     }
     return currNode;
@@ -49,18 +53,4 @@ class ListClass {
   }
 }
 
-const fruits = new ListClass();
-const arr = ["Apple", "Banana", "Pear", "Grape"];
-
-arr.forEach((ele, index) => {
-  if (!index) {
-    fruits.insert(ele, "head");
-    return;
-  }
-  fruits.insert(ele, arr[index - 1]);
-});
-fruits.display();
-
-// 我们把香蕉吃掉
-fruits.remove("Banana");
-fruits.display();
+module.exports = ListClass;
