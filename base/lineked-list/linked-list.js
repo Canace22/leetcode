@@ -1,6 +1,6 @@
 //节点
-function Node(element) {
-  this.element = element; //当前节点的元素
+function Node(val) {
+  this.val = val; //当前节点的元素
   this.next = null; //下一个节点链接
 }
 
@@ -12,14 +12,14 @@ class ListClass {
   find(item) {
     let currNode = this.head;
 
-    while (currNode && currNode.element != item) {
+    while (currNode && currNode.val != item) {
       currNode = currNode.next;
     }
     return currNode;
   }
   //插入节点
-  insert(newElement, item) {
-    let newNode = new Node(newElement);
+  insert(newVal, item) {
+    let newNode = new Node(newVal);
     let currNode = this.find(item);
     newNode.next = currNode.next;
     currNode.next = newNode;
@@ -38,7 +38,7 @@ class ListClass {
   //查找带删除节点的前一个节点
   findPrev(item) {
     let currNode = this.head;
-    while (currNode && currNode.next && currNode.next.element != item) {
+    while (currNode && currNode.next && currNode.next.val != item) {
       currNode = currNode.next;
     }
     return currNode;

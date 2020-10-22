@@ -1,3 +1,5 @@
+// 一刷时间: 2020-10-19
+// 链接：https://leetcode-cn.com/problems/backspace-string-compare/
 /**
  * @param {string} S
  * @param {string} T
