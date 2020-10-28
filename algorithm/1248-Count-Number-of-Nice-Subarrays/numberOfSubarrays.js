@@ -27,12 +27,6 @@ var numberOfSubarrays = function (nums, k) {
   return ans;
 };
 
-const test1 = numberOfSubarrays([1, 1, 2, 1, 1], 3);
+module.exports = numberOfSubarrays;
 
-const test2 = numberOfSubarrays([2, 4, 6], 1);
 
-const test3 = numberOfSubarrays([2, 2, 2, 1, 2, 2, 1, 2, 2, 2], 2);
-
-console.log('test1:', test1);
-console.log('test2:', test2);
-console.log('test3:', test3);
