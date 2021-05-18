@@ -5,12 +5,11 @@
  * @return {number[][]}
  */
 var permute = function (nums) {
-  const list = [];
-  const len = nums.length
+  const res = [];
   const map = {}
   const backtrack = (path=[]) => {
-    if (path.length === len) return list.push([...path]);
-    for (let i = 0; i < len; i++) {
+    if (path.length === nums.length) return res.push([...path]);
+    for (let i = 0; i < nums.length; i++) {
       const num = nums[i]
       if (map[num]) continue;
       path.push(num);
@@ -21,7 +20,7 @@ var permute = function (nums) {
     }
   };
   backtrack();
-  return list;
+  return res;
 };
 
 module.exports = permute;
