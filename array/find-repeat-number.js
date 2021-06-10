@@ -5,7 +5,7 @@
  * @return {number}
  */
 var findRepeatNumber = function(nums) {
-  // 暴力破解
+  // 暴力破解,双指针
   // for (let i = 0; i < nums.length; i++) {
   //   for (let j = i+1; j < nums.length; j++) {
   //     if (nums[i] === nums[j]) {
